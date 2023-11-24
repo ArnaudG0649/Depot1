@@ -1,3 +1,5 @@
+#!/bin/env python3
+
 from random import randrange
 
 class Carte():
