@@ -87,6 +87,7 @@ class Fraction:
             na,da=self.n,self.d
             return b>=na/da 
 
+"""
 f = Fraction(15,27)
 print(f)                  # 15/27
 f2 = f.inverse()
@@ -134,3 +135,4 @@ if p>=q:
 
 p += q
 print(2*p)
+"""
