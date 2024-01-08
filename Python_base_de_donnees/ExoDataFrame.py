@@ -119,13 +119,13 @@ Grp.mean().sort_values(ascending=False).head(5)
 
 ######################### Ex4 #########################
 
-EtatCivil=pd.read_csv("/users/2024/ds1/122005148/Bureau/Python_base_de_donnees/etatcivil.csv", sep=',' ,index_col=0)
+EtatCivil=pd.read_csv("etatcivil.csv", sep=',' ,index_col=0)
 
 EtatCivil.head(3)
 EtatCivil.columns=['Année','Nom','Sexe','Naissances']
 
 EtatCivil[((EtatCivil['Nom'].str)[:4]=='Fran')]
-Fran=EtatCivil[(EtatCivil['Nom'].str).startswith("Fran")]
+Fran=EtatCivil[EtatCivil['Nom'].str.startswith("Fran")]
 
 Grp=Fran.groupby('Nom')['Naissances'].sum()
 Grp.sort_values(ascending=False).head(5)
@@ -134,6 +134,7 @@ Fran5=Grp.sort_values(ascending=False).head(5)
 
 Fran5DF=Fran[Fran['Nom'].isin(Fran5.index)] ; Fran5DF
 Fran5DFP=Fran5DF.pivot_table('Naissances',index='Année',columns='Nom', aggfunc=sum) #Effectif M et F à sommer 
+Fran5DFP
 
 Fran5DFP.plot(grid=True,ylabel="Naissances" )
 
