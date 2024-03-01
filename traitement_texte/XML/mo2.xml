@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE agence [
+    <!ELEMENT agence (nom, periode, voyage*) >
+    <!ATTLIST agence  niveau CDATA #REQUIRED > 
+    <!ELEMENT nom (#PCDATA)>
+    <!ELEMENT periode (#PCDATA) >
+    <!ELEMENT voyage (pays, duree, descriptif, prix) >
+    <!ATTLIST voyage niveau (1 | 2 | 3 | 4 | 5) #IMPLIED > 
+    <!ELEMENT descriptif  (#PCDATA | remarque )* >
+    <!ATTLIST descriptif  langue CDATA "fr" > 
+    <!ELEMENT remarque (#PCDATA) >
+    <!ELEMENT prix (#PCDATA) >
+    <!ELEMENT  pays (#PCDATA) >
+    <!ELEMENT duree (#PCDATA) >
+]>
+
+<agence niveau="15">
+    <nom>Dupont</nom>
+</agence>
+
+
+<agence niveau="15">
+    <nom>Dupont</nom>
+    <periode>Juillet</periode>
+    <voyage>
+        <pays>Bahamas</pays>
+        <duree>3w</duree>
+        <descriptif>
+            C'est beau
+            <remarque>C'est cher</remarque>
+        </descriptif>
+        <prix>4000</prix>
+    </voyage>
+</agence>

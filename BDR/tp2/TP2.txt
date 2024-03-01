@@ -1,0 +1,133 @@
+1.1
+SELECT contactname, orderid, orderdate
+FROM  customer c
+INNER JOIN salesorder r
+    ON r.customerid=c.customerid
+WHERE c.customerid=2
+;
+
+1.2
+SELECT contactname
+FROM  customer
+WHERE customerid NOT IN (
+    SELECT customerid
+    FROM salesorder
+)
+;
+
+SELECT *
+FROM customer
+WHERE contactname==Bueno
+
+
+2.1
+SELECT categoryname, contactname
+FROM  product p
+INNER JOIN category c
+    ON c.categoryid=p.categoryid
+INNER JOIN supplier s
+    ON s.supplierid=p.supplierid
+;
+
+2.2
+SELECT categoryname, contactname
+FROM  product p
+INNER JOIN category c
+    ON c.categoryid=p.categoryid
+INNER JOIN supplier s
+    ON s.supplierid=p.supplierid
+
+ORDER BY categoryname ASC, contactname ASC
+;
+
+2.3
+SELECT categoryid, supplierid
+FROM  product
+WHERE supplierid IS NULL
+;
+
+2.4
+SELECT categoryname, nb_fournisseurs
+FROM (
+SELECT c.categoryname, COUNT(*) AS nb_fournisseurs
+FROM  product p
+INNER JOIN category c
+    ON c.categoryid=p.categoryid
+INNER JOIN supplier s
+    ON s.supplierid=p.supplierid
+GROUP BY categoryname
+)
+;
+Solution prof :
+
+SELECT T1.*
+FROM
+(
+    SELECT
+        c.categoryname AS categorie,
+        COUNT(s.supplierid) AS nbf
+    FROM category c
+    INNER JOIN product p ON c.categoryid=p.categoryid
+    INNER JOIN supplier s ON p.supplierid = s.supplierid
+    GROUP BY c.categoryname
+) T1
+INNER JOIN
+(
+    SELECT max(nb_fournisseurs) AS maxf
+    FROM (
+        SELECT
+            c.categoryname AS cate,
+            COUNT(s.supplierid) AS nb_fournisseurs
+        FROM category c
+        INNER JOIN product p ON c.categoryid=p.categoryid
+        INNER JOIN supplier s ON p.supplierid = s.supplierid
+        GROUP BY c.categoryname
+    ) T
+) T2
+ON T1.nbf = T2.maxf
+
+AM :
+SELECT *
+FROM
+(
+    SELECT
+        *,
+        dense_rank() over (order by nbf DESC) as ranking
+    FROM
+    (
+        SELECT
+            c.categoryname AS categorie,
+            COUNT(s.supplierid) AS nbf
+        FROM category c
+        INNER JOIN product p ON c.categoryid=p.categoryid
+        INNER JOIN supplier s ON p.supplierid = s.supplierid
+        GROUP BY c.categoryname
+    ) T1
+) T2
+WHERE T2.ranking=1;
+
+Test :
+SELECT
+    *,
+    dense_rank() over (order by nbf DESC) as ranking
+FROM
+(
+    SELECT
+        c.categoryname AS categorie,
+        COUNT(s.supplierid) AS nbf
+    FROM category c
+    INNER JOIN product p ON c.categoryid=p.categoryid
+    INNER JOIN supplier s ON p.supplierid = s.supplierid
+    GROUP BY c.categoryname
+) T1
+WHERE ranking=1
+
+
+
+
+
+
+
+
+
+

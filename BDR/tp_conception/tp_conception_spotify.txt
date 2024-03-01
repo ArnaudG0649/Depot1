@@ -1,0 +1,43 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table artiste {
+  id integer [primary key]
+  artiste_nom varchar
+}
+
+Table piste {
+  id integer [primary key]
+  piste_nom varchar
+  album_id varchar
+  created_at timestamp
+}
+
+Table album {
+  id integer [primary key]
+  album_nom varchar
+}
+
+Table piste_artiste {
+  artiste_id integer [primary key]
+  piste_id intger [primary key]
+}
+
+Table artiste_album {
+  artiste_id integer [primary key]
+  album_id integer [primary key]
+}
+
+Table utilisateur {
+  id integer [primary key]
+  utilisateur_nom varchar
+}
+
+
+Ref: piste.album_id < album.id // many-to-one
+
+Ref: piste.id < piste_artiste.piste_id
+Ref: artiste.id < piste_artiste.artiste_id
+
+Ref: album.id < artiste_album.album_id
+Ref: artiste.id < artiste_album.artiste_id

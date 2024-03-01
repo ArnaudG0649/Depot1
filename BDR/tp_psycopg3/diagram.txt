@@ -1,0 +1,26 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table pokemon {
+  pokemon_id integer [primary key]
+  name varchar(30) [not null]
+  name_de varchar(30)
+  generation smallint [not null]
+  height float
+  weight float
+}
+
+Table pokemon_type {
+  pokemon_id integer [primary key]
+  type_id integer [primary key]
+}
+
+Table type {
+  type_id integer [primary key]
+  name varchar(20) [not null]
+}
+Ref: pokemon_type.pokemon_id > pokemon.pokemon_id // many-to-one
+
+Ref: pokemon_type.type_id > type.type_id
+
+/*Ref: users.id < follows.followed_user_id*/

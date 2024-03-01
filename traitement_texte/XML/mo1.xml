@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE exemple [
+  <!ELEMENT exemple (e1, e2, e3, e4, e5)>
+  <!ELEMENT e1 (a, b)+ >
+  <!ELEMENT e2 (a | b)+ >
+  <!ELEMENT e3 (a+ | b+) >
+  <!ELEMENT e4 ((a|b), c)>
+  <!ELEMENT e5 ((a|b)+, c)>
+  <!ELEMENT a (#PCDATA)>
+  <!ELEMENT b (#PCDATA)>
+  <!ELEMENT c (#PCDATA)>
+]>
+
+
+<exemple>
+    <e1> 
+        <a>blabla</a>
+        <b>blabla2</b>
+    </e1>
+    <e2> 
+        <a>blabla</a>
+    </e2>
+    <e3> 
+        <a>blabla</a>
+        <a>blabla2</a>
+    </e3>
+    <e4> 
+        <a>blabla</a>
+        <c>blabla2</c>
+    </e4>
+    <e5> 
+        <a>blabla</a>
+        <b>blabla2</b>
+        <c>blabla3</c>
+    </e5>
+</exemple>
+
+

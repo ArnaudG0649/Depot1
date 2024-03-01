@@ -1,0 +1,5 @@
+Ceci est un fichier encodé latin1.
+On peut utiliser les caractères accentués, comme é, è, à, ù, ô, etc.
+avec également les majuscules correspondantes, comme É, È, À, Ô, etc.
+Les c-cédille ç et Ç sont également dispo.
+Par contre, nous n'avons pas le caractère Euro :-(
