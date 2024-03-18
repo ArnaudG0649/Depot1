@@ -1,0 +1,37 @@
+<html>
+    <head> 
+      <title>Les pages consultées</title>
+      <style>   
+        table.mon_tableau  {
+            border-collapse: collapse;
+        }
+        table.mon_tableau td {
+           border: 1px solid #5555;
+           padding: 0.3em;
+           font-family: "Sans-serif";
+           font-size: 12px;
+        }
+        table.mon_tableau tr:nth-child(even)  {background: #EEE}
+        table.mon_tableau tr:nth-child(odd) {background: #FFF}
+      </style>
+    </head>
+    
+    <body> 
+    <h1>Pages consultées</h1>
+    {% if rien %}
+      Aucune page n'a été consulté
+    {% else %}
+      <table class="mon_tableau">
+      <p>{{ nb }} accès</p>
+      {% for p in hit %}
+        <tr>       
+          <td>{{p.timestamp}}</td>
+          <td>{{p.client}}</td>
+          <td>{{p.page}}</td>
+          <td>{{p.referer}}</td>
+        </tr>
+       {% endfor %}
+      </table>
+    {% endif %}
+    </body>
+    </html>

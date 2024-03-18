@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 import os
 import django
 
@@ -28,25 +29,20 @@ def clients(request):
     return response
 
 def pages(request):
-    response = HttpResponse()
-    response.write("<table>")
-    for p in Page.objects.all() : 
-        response.write(f"<tr><td>{p}</td></tr>")
-    response.write("</table>")    
-    return response
+    return render(request,'temp1.html', 
+        {                                          
+            'pages': Page.objects.all(),
+            'nb': Page.objects.count(),
+            'rien': Page.objects.count()==0
+        })
 
 def hit(request):
-    response = HttpResponse()
-    response.write("<table>")
-    for p in Hit.objects.all() : 
-        response.write("<tr>")
-        response.write(f"<td>{p.timestamp}</td>")
-        response.write(f"<td>{p.client}</td>")
-        response.write(f"<td>{p.page}</td>")
-        response.write(f"<td>{p.referer}</td>")
-        response.write("</tr>")
-    response.write("</table>")    
-    return response
+    return render(request,'tmp_hit.html', 
+        {                                          
+            'hit': Hit.objects.all(),
+            'nb': Hit.objects.count(),
+            'rien': Hit.objects.count()==0
+        })
 
 def somme(request,capture1,capture2) : 
     response = HttpResponse()
