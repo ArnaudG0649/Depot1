@@ -11,4 +11,6 @@ urlpatterns = [
     path('hit', views.hit, name='hit'),
     re_path(r'^sum/(.*)/(.*)$', views.somme, name='somme'),
     path('', views.home, name='vide'), 
+    path('form',views.form,name='form'),
+    path('URL_de_reception',views.reception,name='reception'),
 ] 

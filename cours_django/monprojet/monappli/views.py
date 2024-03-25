@@ -52,3 +52,10 @@ def somme(request,capture1,capture2) :
     txt+=str(sum(lnbr))
     response.write('<p>'+txt+"</p>")
     return response
+
+def form(request):
+    return render(request,'form.html')
+
+def reception(request): 
+    return render(request,'URL_de_reception.html')
+
