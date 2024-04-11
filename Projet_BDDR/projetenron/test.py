@@ -16,9 +16,9 @@ from app1.models import Employee,Emailadress,Mail,To,Cc,Re
 
 from django.core.exceptions import ObjectDoesNotExist
 
-#reponse=Mail.objects.all(emailadress_id_id="mike.carson@enron.com")
-# reponse=Mail.objects.all().filter(emailadress_id_id="mike.carson@enron.com")
-# print(reponse)
+reponse=Mail.objects.all(emailadress_id_id="mike.carson@enron.com")
+reponse=Mail.objects.all().filter(emailadress_id_id="mike.carson@enron.com")
+print(reponse)
 
 Lmois=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
@@ -35,3 +35,21 @@ print(dt.year)
 #subject="Lets get this ball rolling....",
 reponse=Mail.objects.all().filter(subject="Lets get this ball rolling....")#timedate__date=datetime.date(2002,nummois,25))#,timedate__hour=5,timedate__minute=45)
 print(reponse)
+
+#Un employé oublié dans le fichier xml
+
+# e=Employee(employee_id=1, lastname="Mims-thurston", firstname="Patrice", category=None)
+# e.save()
+
+# ea=Emailadress(employee_id=e, emailadress_id="patrice.mims@enron.com", interne=True)
+# ea.save() 
+# ea=Emailadress(employee_id=e, emailadress_id="pmims@enron.com", interne=True)
+# ea.save() 
+# ea=Emailadress(employee_id=e, emailadress_id="pmims@ect.enron.com", interne=True)
+# ea.save() 
+# ea=Emailadress(employee_id=e, emailadress_id="patrice.l.mims@enron.com", interne=True)
+# ea.save() 
+# ea=Emailadress(employee_id=e, emailadress_id="mims@enron.com", interne=True)
+# ea.save() 
+# ea=Emailadress(employee_id=e, emailadress_id="l..mims@enron.com", interne=True)
+# ea.save() 

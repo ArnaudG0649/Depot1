@@ -51,16 +51,18 @@ for i in range(len(Listeemployees)):
     # Table_employees_mails.append(Enregistrement)
     if len(L[0].attrib)>0 : 
         try:
-            e=Employee.objects.get(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=L[0].attrib['category'])
+            e=Employee.objects.get(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=L[0].attrib['category'], mailbox=L[-1].text)
         except ObjectDoesNotExist:
-            e=Employee(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=L[0].attrib['category'])
+            e=Employee(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=L[0].attrib['category'], mailbox=L[-1].text)
             e.save()
+            print(f"L'employé.e {L[2].text} {L[1].text} a été rajouté.e à la base de données.")
     else : 
         try:
-            e=Employee.objects.get(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=None)
+            e=Employee.objects.get(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=None, mailbox=L[-1].text)
         except ObjectDoesNotExist:
-            e=Employee(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=None)
+            e=Employee(employee_id=i+1, lastname=L[1].text, firstname=L[2].text, category=None, mailbox=L[-1].text)
             e.save()
+            print(f"L'employé.e {L[2].text} {L[1].text} a été rajouté.e à la base de données.")
             
     for email_a in Lemail : 
         try : 
@@ -68,6 +70,26 @@ for i in range(len(Listeemployees)):
         except ObjectDoesNotExist:  
             ea=Emailadress(employee_id=e, emailadress_id=email_a, interne=True)
             ea.save()
+            
+    #On rajoute un employé absent dans le fichier xml
+
+    # e=Employee(employee_id=len(Listeemployees)+1, lastname="Mims-thurston", firstname="Patrice", category=None)
+    # e.save()
+    # print("L'employé Patrice Mims-thurston a été rajouté à la base de données.")
+
+    # ea=Emailadress(employee_id=e, emailadress_id="patrice.mims@enron.com", interne=True)
+    # ea.save() 
+    # ea=Emailadress(employee_id=e, emailadress_id="pmims@enron.com", interne=True)
+    # ea.save() 
+    # ea=Emailadress(employee_id=e, emailadress_id="pmims@ect.enron.com", interne=True)
+    # ea.save() 
+    # ea=Emailadress(employee_id=e, emailadress_id="patrice.l.mims@enron.com", interne=True)
+    # ea.save() 
+    # ea=Emailadress(employee_id=e, emailadress_id="mims@enron.com", interne=True)
+    # ea.save() 
+    # ea=Emailadress(employee_id=e, emailadress_id="l..mims@enron.com", interne=True)
+    # ea.save() 
+            
             
 #print(Table_employees_mails)
 #Voilà on a une pseudo table.
