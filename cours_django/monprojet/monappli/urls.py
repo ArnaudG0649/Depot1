@@ -13,4 +13,7 @@ urlpatterns = [
     path('', views.home, name='vide'), 
     path('form',views.form,name='form'),
     path('URL_de_reception',views.reception,name='reception'),
+    path('tapart',views.tapart,name='tableau_automatique'),
+    path('grosta',views.grosta,name='gros_tableau_automatique'),
+    re_path(r'^(maildir/.*)$', views.ouvmail, name='ouvmail')
 ] 

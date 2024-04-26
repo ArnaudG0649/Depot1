@@ -9,8 +9,8 @@
     </head>
 
     <body>
-        <h1>Bravo !</h1>
-        <p>Vous avez rentré : {{mon_texte}}</p>
+        <h1>Merci !</h1>
+
     </body>
 
 

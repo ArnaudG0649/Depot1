@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import pandas as pds
+import numpy as np
+import os
+import os.path as osp
 
 
 import os
@@ -57,5 +61,57 @@ def form(request):
     return render(request,'form.html')
 
 def reception(request): 
-    return render(request,'URL_de_reception.html')
+    rP=request.POST
+    return render(request,'URL_de_reception.html',
+        {
+            'mon_texte':rP['mon_texte']
+                  })
+
+
+def ta(request,tableau) :
+    nrow=tableau.shape[0]
+    M=np.asarray(tableau)
+    ntableau=[[tableau.index[i]]+list(M[i,:]) for i in range(nrow)]
+    return render(request,'Resultat_requete.html',
+        {
+            'index' : tableau.index,
+            'columns' : tableau.columns,
+            'L' : ntableau
+                  })
+    
+def tapart(request) :
+    famille=pds.DataFrame({'maman':[4,1],'papa':[7,9],'enfant':["issou","lol"]})
+    return(ta(request,famille))
+    
+    
+    
+def grosta(request) : 
+    tableau=pds.read_csv("/users/2024/ds1/122005148/Bureau/cours_django/monprojet/recherchemot.csv",index_col=(0))
+    nrow=tableau.shape[0]
+    M=np.asarray(tableau)
+    ntableau=[[tableau.index[i]]+list(M[i,:]) for i in range(nrow)]
+    return render(request,'grosta.html',
+        {
+            'index' : tableau.index,
+            'columns' : tableau.columns,
+            'L' : ntableau
+                  })
+    
+def ouvmail(request,capture) : 
+    response = HttpResponse()
+    path=osp.join('/users/2024/ds1/122005148/Bureau/projet_BDDR/',capture)
+    try : 
+        with open(path,"r") as file :
+            for ligne in file : 
+                response.write('<p>'+ligne+'</p>')
+    except UnicodeDecodeError :
+        with open(path,"rb") as file :
+            Lignes=str(file.read()).split(r'\n')
+            for ligne in Lignes : 
+                response.write('<p>'+ligne+'</p>')
+    return response
+    
+
+    
+
 

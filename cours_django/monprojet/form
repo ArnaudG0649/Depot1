@@ -1,4 +1,4 @@
-{% load static %}
+
 
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <title>Le titre</title>
     <!--<link rel="stylesheet" href="site.css"> -->
-    <link rel="stylesheet" href="{% static 'monappli/site.css' %}">
+    <link rel="stylesheet" href="/static/monappli/site.css">
 
     <style>  
       table.mon_tableau  {
@@ -21,9 +21,9 @@
     <body>
         
 
-    <form method="POST" action="URL_de_reception">{% csrf_token %}
+    <form method="POST" action="URL_de_reception"><input type="hidden" name="csrfmiddlewaretoken" value="kCgA9ozOjyAtjatvH3ZMSCYFVo8suc7CwnvPJDmwhTFhaEMZ4PNzjA588BU48qgL">
         <p>
-            saisie d'un petit texte : <input type="text" name="mon_texte" />
+            saisie d'un petit texte : <input type="text" name="mon_texte" value="" />
         </p>
         <!--
         <p>
