@@ -6,6 +6,16 @@ INNER JOIN app1_emailadress ea
 WHERE e.lastname='Taylor' AND e.firstname='Mark'
 ;
 
+
+SELECT e.employee_id, e.lastname, e.firstname, e.category, e.mailbox, string_agg(ea.emailadress_id,' ; ') /*Version où l'on concatène les adresses mails*/
+FROM app1_employee e
+INNER JOIN app1_emailadress ea
+    ON e.employee_id=ea.employee_id_id
+WHERE e.lastname='Taylor' AND e.firstname='Mark'
+GROUP BY e.employee_id, e.lastname, e.firstname, e.category, e.mailbox
+;
+
+
 SELECT e.firstname , e.lastname , e.category, e.mailbox, ea.emailadress_id
 FROM (SELECT * /*Cette sous-requête a pour but de récupérer l'id de l'employé à partir de l'adresse mail*/
     FROM app1_employee e
@@ -14,6 +24,18 @@ FROM (SELECT * /*Cette sous-requête a pour but de récupérer l'id de l'employ�
     WHERE ea.emailadress_id='elizabeth.sager@enron.com') e
 INNER JOIN app1_emailadress ea /*Puis ce join permet de récupérer toutes ces autres adresses mails*/
     ON e.employee_id=ea.employee_id_id
+;
+
+
+SELECT e.firstname , e.lastname , e.category, e.mailbox, string_agg(ea.emailadress_id,' ; ') /*Version où l'on concatène les adresses mails*/
+FROM (SELECT * /*Cette sous-requête a pour but de récupérer l'id de l'employé à partir de l'adresse mail*/
+    FROM app1_employee e
+    INNER JOIN app1_emailadress ea
+        ON e.employee_id=ea.employee_id_id
+    WHERE ea.emailadress_id='elizabeth.sager@enron.com') e
+INNER JOIN app1_emailadress ea /*Puis ce join permet de récupérer toutes ces autres adresses mails*/
+    ON e.employee_id=ea.employee_id_id
+GROUP BY e.firstname, e.lastname , e.category, e.mailbox
 ;
 
 ----Requête n°2----
