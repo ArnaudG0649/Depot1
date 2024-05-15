@@ -34,9 +34,9 @@ class Mailobj() : #On crée une classe de mails. Les attributs des tables seront
 
         d=Lignes[1].split(" ")[1:]
         nummois=Lmois.index(d[2])+1
-        delta=datetime.timedelta(hours=-int(d[-2][2]))
-        zone=datetime.timezone(delta)
-        self.date=datetime.datetime(int(d[3]), nummois, int(d[1]), hour=int(d[4][:2]), minute=int(d[4][3:5]), second=int(d[4][6:]), tzinfo=zone)+datetime.timedelta(hours=-9)
+        # delta=datetime.timedelta(hours=-int(d[-2][2]))
+        # zone=datetime.timezone(delta)
+        self.date=datetime.datetime(int(d[3]), nummois, int(d[1]), hour=int(d[4][:2]), minute=int(d[4][3:5]), second=int(d[4][6:]))#, tzinfo=zone)+datetime.timedelta(hours=-9)
         
         if re.search(r"From: (\S*@\S*)",Lignes[2]) : 
             self.fromm=re.search(r"From: (\S*@\S*)",Lignes[2]).group(1) 
