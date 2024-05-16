@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+  <!-- Les meta-donnees -->
+  <head>
+    <meta charset="utf-8">
+    <title>Requete 7</title>
+    <!--<link rel="stylesheet" href="site.css"> -->
+    <link rel="stylesheet" href="{% static 'monappli/site.css' %}">
+
+    <style>  
+      table.mon_tableau  {
+          border-collapse: collapse;
+      }
+    </style>
+  </head>
+
+    <body>
+        <h2>7. Liste des mails échangés entre deux employés.</h2>
+
+    <form method="POST" action="req7">{% csrf_token %}
+        <div class="rectangle">
+            Identité du premier employé : 
+            <p>Nom : <input type="text" name="nom1">
+            Prénom : <input type="text" name="prenom1"></p>
+        </div>
+        <div class="rectangle">
+            Identité du deuxième employé : 
+            <p>Nom : <input type="text" name="nom2">
+            Prénom : <input type="text" name="prenom2"></p>
+        </div>
+        <p class="rectangle">
+            Date de début : <input type="date" name="joura"/>
+            Heure de début : <input type="time" name="heurea"/>
+        </p>
+        <p class="rectangle">
+            Date de fin : <input type="date" name="jourb"/>
+            Heure de fin: <input type="time" name="heureb"/>
+        </p>
+        <p class="rectangle">
+            Object (Rentrez l'object d'un mail pour avoir son contenu et tous les mails qui y répondent, ou laissez rien sinon): <input type="text" name="subject" />
+        </p>
+        <div class="envoi"><input type="submit"></div>
+    </form> 
+
+    <p><a href="http://127.0.0.1:7000/Application_Projet/Accueil">Revenir à la page d'accueil</a></p>
+    
+    </body>
+</html>
+  
+   

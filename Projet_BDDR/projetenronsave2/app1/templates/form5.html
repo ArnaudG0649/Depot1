@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+  <!-- Les meta-donnees -->
+  <head>
+    <meta charset="utf-8">
+    <title>Requete 5</title>
+    <!--<link rel="stylesheet" href="site.css"> -->
+    <link rel="stylesheet" href="{% static 'monappli/site.css' %}">
+
+    <style>  
+      table.mon_tableau  {
+          border-collapse: collapse;
+      }
+    </style>
+  </head>
+
+    <body>
+        <h2>5. Nombre de mails échangés par jour.</h2>
+
+    <form method="POST" action="req5">{% csrf_token %}
+        <div class="bouton">
+            Caractéristiques des mails :
+            <div>Échanges internes-internes <input type="radio" name="nature" value="0"></div>
+            <div>Échanges internes-externes <input type="radio" name="nature" value="1"></div>
+            <div>Les deux <input type="radio" name="nature" value="2"></div>
+        </div>
+        <p class="rectangle">
+            Date de début : <input type="date" name="joura"/>
+        </p>
+        <p class="rectangle">
+            Date de fin : <input type="date" name="jourb"/>
+        </p>
+        <div class="bouton">
+            Classement par :
+            <div>Nombre de mail <input type="radio" name="ordre" value="nb"></div>
+            <div>Date <input type="radio" name="ordre" value="date"></div>
+        </div>
+
+        <div class="envoi"><input type="submit"></div>
+    </form> 
+    
+    <p><a href="http://127.0.0.1:7000/Application_Projet/Accueil">Revenir à la page d'accueil</a></p>
+    
+    </body>
+</html>
+  
+   

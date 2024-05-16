@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+  <!-- Les meta-donnees -->
+  <head>
+    <meta charset="utf-8">
+    <title>Requete 1</title>
+    <!--<link rel="stylesheet" href="site.css"> -->
+    <link rel="stylesheet" href="{% static 'monappli/site.css' %}">
+
+    <style>  
+      table.mon_tableau  {
+          border-collapse: collapse;
+      }
+    </style>
+  </head>
+
+    <body>
+    <h2>1. Obtenir des informations sur un employé : ces adresses mail, le nom de sa boîte mail et son rôle dans l'entreprise si renseigné.</h2>
+
+    <form method="POST" action="Formulaire1bis">{% csrf_token %}
+        <div class="bouton">
+            <div>Tous les employés<input type="radio" name="rep1" value="0"></div>
+            <div>Par employé(e) <input type="radio" name="rep1" value="1"></div>
+            <div>Par adresse mail <input type="radio" name="rep1" value="2"></div>
+        </div>
+
+
+        <div class="envoi"><input type="submit"></div>
+    </form> 
+    
+    <p><a href="http://127.0.0.1:7000/Application_Projet/Accueil">Revenir à la page d'accueil</a></p>
+    
+    </body>
+</html>
+  
+   
